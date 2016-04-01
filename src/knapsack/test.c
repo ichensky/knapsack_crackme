@@ -12,20 +12,34 @@ const size_t _str[]={0,1,1,0,0,0,1,1,0,1,0,1,1,0,1,1,1,0};
 void printf_arr(const size_t *arr,
 		const size_t size){
   size_t i;
-  for(i=0;i<size;i++){
+  for(i=0;i<size-1;i++){
+    printf("%d,",arr[i]);
+  }
+  if(i<size){
     printf("%d",arr[i]);
+  }
+}
+void printf_bits(const size_t *bits,
+		const size_t size){
+  size_t i;
+  for(i=0;i<size;i++){
+    printf("%d",bits[i]);
   }
 }
 
 int
 main(void){
-  
-  size_t key_size = sizeof _private_key / sizeof *_private_key;
+  const size_t key_size = sizeof _private_key / sizeof *_private_key;
   size_t public_key[key_size];
-
-  generate_public_key(_private_key, public_key, key_size, _n, _m);
+  printf("private key: ");
   printf_arr(_private_key, key_size);
+  printf("\n");
+
+  // generate public key
+  generate_public_key(_private_key, key_size, _n, _m, public_key);
+  printf("public key: ");
   printf_arr(public_key, key_size);
+  printf("\n");
 
   size_t str_size = sizeof _str / sizeof * _str;
   size_t* encrypted_str;
@@ -33,9 +47,6 @@ main(void){
   encrypt_str(public_key, key_size, _str, str_size,
 		   &encrypted_str, &encrypted_str_size);
 
-  printf_arr(_str, str_size);
-  printf("%zu\n\n\n", encrypted_str_size);
-  printf_arr(encrypted_str, encrypted_str_size);
   
   return(0);
 }
