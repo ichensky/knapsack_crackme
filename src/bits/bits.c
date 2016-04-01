@@ -1,5 +1,4 @@
 #include <stdio.h>
-\
 #include <stdlib.h>
 #include "bits.h"
 
@@ -8,7 +7,7 @@ popcount(const size_t number){
   /* TODO: optimize alg, read: 
    * https://en.wikipedia.org/wiki/Hamming_weight 
    */
-  size_t n=number;
+  size_t n=number-1;
   size_t j=1;
   size_t i=1;
   while(n>>=1){
@@ -44,7 +43,7 @@ number_decimal_to_bin(const size_t max_size,
   decimal_to_bin(mask,number,s);
   *bits=(size_t *)s;
 }
-void message_to_bin(const char* str,
+void str_to_bin(const char* str,
 		    const size_t str_size,
 		    const size_t max_size,
 		    size_t** bits,
@@ -62,4 +61,26 @@ void message_to_bin(const char* str,
   *bits=(size_t *)s;
 }
 
+
+void
+bin_to_decimal(const size_t* bits,
+	       const size_t bits_size,
+	       size_t* number){
+
+  size_t n=0;
+  size_t i;
+  size_t j;
+  size_t tmp;
+  
+  for (i=0; i < bits_size ; i++) {
+    j = bits_size-i-1;
+    tmp=bits[i];
+    if (tmp==1) {
+      tmp<<=j;
+      n|=tmp;
+    }
+  }
+
+  *number=n;
+}
 

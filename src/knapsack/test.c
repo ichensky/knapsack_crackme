@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "knapsack.h"
+#include "bits.h"
 
 const size_t _n = 31,
   _m = 105;

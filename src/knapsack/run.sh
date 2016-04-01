@@ -1,3 +1,3 @@
 set -e
 source build.sh 
-./test
+./test.out

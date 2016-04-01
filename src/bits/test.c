@@ -2,29 +2,39 @@
 #include <assert.h>
 #include "bits.h"
 
-const size_t _enconding_size=250;
-const size_t _number=65;
+const size_t _enconding_size=256;
+const size_t _number=68;
 const char* _str="message";
 
 int
 main(void){
   size_t *bits;
   size_t size;
+  // number to bin
   number_decimal_to_bin(_enconding_size,_number,&bits,&size);
-  
+
+  printf("bits_size: %d\n", size);
+  printf("number: %d;\nbits:", _number);
   size_t i;
   for(i=0;i<size;i++){
     printf("%d",bits[i]);
   }
+  size_t number;
+  // bin to number
+  bin_to_decimal(bits, size, &number);
+  printf("\nnumber from bits: %d", number);
   printf("\n\n");
   size_t str_size=sizeof _str / sizeof *_str;
-  message_to_bin(_str,str_size,_enconding_size,&bits,&size);
+  // str to bin
+  str_to_bin(_str,str_size,_enconding_size,&bits,&size);
 
   for(i=0;i<size;i++){
     printf("%d",bits[i]);
   }
   
   printf("\n");
+
+  // bin to str
   
   return(0);
 }

@@ -1,1 +1,1 @@
-gcc main.c knapsack/knapsack.c
+gcc main.c knapsack/knapsack.c -o knapsack_creackme.out
