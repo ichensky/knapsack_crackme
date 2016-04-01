@@ -84,3 +84,22 @@ bin_to_decimal(const size_t* bits,
   *number=n;
 }
 
+void
+bin_to_str(const size_t* bits,
+	   const size_t bits_size,
+	   char** str){
+
+  size_t size=sizeof *bits;
+  char* s=malloc(sizeof(char)* (bits_size/size));
+  
+  size_t i;
+  size_t number;
+  size_t j;
+  for (i = 0,j=0; i<bits_size; i+=size, j++) {
+    bin_to_decimal((size_t*)bits+i,size,&number);
+    s[j]=(char)number;
+  }
+
+  *str=(char *)s;
+}
+

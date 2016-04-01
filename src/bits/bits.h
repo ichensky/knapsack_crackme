@@ -66,3 +66,16 @@ void
 bin_to_decimal(const size_t* bits,
 	       const size_t bits_size,
 	       size_t* number);
+
+/*
+ * Function: bin_to_str 
+ * --------------------
+ *
+ *  bits: array of bits
+ *  bits_size: size of bits array 
+ *  number: number that would converted to arr of bits
+ */
+void
+bin_to_str(const size_t* bits,
+	   const size_t bits_size,
+	   char** str);
