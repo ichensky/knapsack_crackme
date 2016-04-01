@@ -1,14 +1,14 @@
 #include <stdio.h>
 void
-generatePublicKey(const size_t* privateKey,
-		  size_t* publicKey,
-		  const size_t keySize,
+generate_public_key(const size_t* private_key,
+		  size_t* public_key,
+		  const size_t key_size,
 		  const size_t n,
 		  const size_t m);
 void
-encryptMessage(const size_t* publicKey,
-	       const size_t keySize,
-	       const size_t* message,
-	       const size_t messageSize,
-	       size_t** encryptedMessage,
-	       size_t* encryptedMessageSize);
+encrypt_str(const size_t* public_key,
+	       const size_t key_size,
+	       const size_t* str,
+	       const size_t str_size,
+	       size_t** encrypted_str,
+	       size_t* encrypted_str_size);
