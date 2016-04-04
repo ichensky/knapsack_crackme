@@ -47,6 +47,16 @@ main(void){
   encrypt_str(public_key, key_size, _str, str_size,
 		   &encrypted_str, &encrypted_str_size);
 
+  //char* s;
+  //// bin to str
+  //bin_to_str(_str, str_size, &s);
+  //printf("str from bits: %s\n", s);
+  //printf("\n");  
+
+  printf("\n");
+  printf("encrypted str: ");
+  printf_arr(encrypted_str, encrypted_str_size);
+  printf("\n");
   
   return(0);
 }
