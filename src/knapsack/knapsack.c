@@ -49,7 +49,6 @@ encrypt_str(const size_t* public_key,
     k++;
   }
   
-  printf("m: %d",k);
   size_t j=0;
   for (;i<str_size;i+=public_key_size,k++) {
     sum=0;
@@ -63,6 +62,48 @@ encrypt_str(const size_t* public_key,
   }
   *encrypted_str=(size_t *)p;
   *encrypted_str_size = size;
-  printf("m: %d",p[0]);
 }
 
+
+void
+decrypt_str(const size_t* private_key,
+	    const size_t private_key_size,
+	    const size_t* str,
+	    const size_t str_size,
+	    const size_t n,
+	    const size_t m,
+	    size_t** decrypted_str,
+	    size_t* decrypted_str_size){
+
+  size_t size=str_size*private_key_size;
+  size_t* p=(size_t *)malloc((sizeof *decrypted_str) * size);
+  
+
+  size_t x=(2*n)-1;
+
+  size_t i;
+  size_t j;
+  size_t sum;
+  size_t res;
+  size_t tmp;
+  for (i=0; i<str_size; i++) {
+    sum=(str[i]*x)%m;
+    
+    res=0;
+    j=private_key_size-1;
+  for (;j--!=0;) {
+      tmp=private_key[j];
+      if (res+tmp<sum) {
+	res+=tmp;
+      }
+      else if(res==sum){break;}
+      
+    }
+
+  printf("%d\n", res);
+  }
+
+  
+  *decrypted_str=(size_t *)p;
+  *decrypted_str_size = size;
+}

@@ -57,7 +57,17 @@ main(void){
   printf("encrypted str: ");
   printf_arr(encrypted_str, encrypted_str_size);
   printf("\n");
-  
+
+  size_t* decrypted_str;
+  size_t decrypted_str_size;
+  decrypt_str(_private_key, key_size,
+	      encrypted_str, encrypted_str_size,
+	      _n,_m,
+	      &decrypted_str,&decrypted_str_size);
+  printf("\n");
+  printf("decrypted str: ");
+  printf_arr(decrypted_str, decrypted_str_size);
+  printf("\n");
   return(0);
 }
 
