@@ -90,17 +90,18 @@ decrypt_str(const size_t* private_key,
     sum=(str[i]*x)%m;
     
     res=0;
-    j=private_key_size-1;
+    j=private_key_size;
   for (;j--!=0;) {
       tmp=private_key[j];
-      if (res+tmp<sum) {
+      if (res+tmp<=sum) {
 	res+=tmp;
+	if(res==sum){
+	  break;
+	}
       }
-      else if(res==sum){break;}
       
     }
 
-  printf("%d\n", res);
   }
 
   
