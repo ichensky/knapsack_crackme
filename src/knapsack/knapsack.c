@@ -76,8 +76,7 @@ decrypt_str(const size_t* private_key,
 	    size_t* decrypted_str_size){
 
   size_t size=str_size*private_key_size;
-  size_t* p=(size_t *)malloc((sizeof *decrypted_str) * size);
-  
+  size_t* p=(size_t *)calloc(size, (sizeof *decrypted_str));
 
   size_t x=(2*n)-1;
 
@@ -95,6 +94,8 @@ decrypt_str(const size_t* private_key,
       tmp=private_key[j];
       if (res+tmp<=sum) {
 	res+=tmp;
+	printf("tmp: %d; i: %d; j: %d\n", tmp,i,j);
+	p[(i*private_key_size)+j]=1;
 	if(res==sum){
 	  break;
 	}
@@ -104,7 +105,6 @@ decrypt_str(const size_t* private_key,
 
   }
 
-  
   *decrypted_str=(size_t *)p;
   *decrypted_str_size = size;
 }
